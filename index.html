@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freerunning - Art du Déplacement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #e94560;
+            --light-color: #f0f0f0;
+            --text-color: #333;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.9)), url('https://images.unsplash.com/photo-1544919982-b61976a0d7ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 2px solid var(--accent-color);
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Athletes Section */
+        .athletes {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .athletes .section-title {
+            color: white;
+        }
+
+        .athletes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .athlete-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .athlete-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .athlete-img {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .athlete-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .athlete-card:hover .athlete-img img {
+            transform: scale(1.1);
+        }
+
+        .athlete-info {
+            padding: 25px;
+        }
+
+        .athlete-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        .athlete-country {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #aaa;
+        }
+
+        .athlete-country i {
+            margin-right: 8px;
+        }
+
+        /* Philosophy Section */
+        .philosophy-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .philosophy-icons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .philosophy-icon {
+            text-align: center;
+            max-width: 200px;
+        }
+
+        .philosophy-icon i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 70px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .philosophy-icons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-running"></i>
+                    <span>Freerunning</span>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#apropos">À propos</a></li>
+                    <li><a href="#athletes">Athlètes</a></li>
+                    <li><a href="#philosophie">Philosophie</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="container">
+            <h1>L'art du déplacement</h1>
+            <p>Le freerunning est bien plus qu'un sport : c'est une expression artistique, une philosophie de vie qui repousse les limites physiques et mentales. Explorez l'univers de la discipline et découvrez ses plus grands athlètes.</p>
+            <a href="#athletes" class="cta-button">Découvrir les athlètes</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="apropos">
+        <div class="container">
+            <h2 class="section-title">Qu'est-ce que le Freerunning ?</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Le freerunning, également appelé "art du déplacement", est une discipline qui consiste à se déplacer librement dans son environnement, en utilisant des mouvements acrobatiques pour franchir des obstacles urbains ou naturels.</p>
+                    <br>
+                    <p>Né dans les années 1990 en France, le freerunning s'inspire du parkour mais se distingue par son accent sur l'expression créative et l'esthétique des mouvements. Les pratiquants, appelés traceurs (hommes) ou traceuses (femmes), développent force, agilité, et une perception unique de leur environnement.</p>
+                    <br>
+                    <p>Contrairement à d'autres sports extrêmes, le freerunning valorise autant la fluidité et la créativité du mouvement que la performance pure, faisant de chaque session une forme d'expression personnelle.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1565992441121-4367c2967103?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Freerunner en action">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Athletes Section -->
+    <section class="athletes" id="athletes">
+        <div class="container">
+            <h2 class="section-title">Athlètes Phares du Freerunning</h2>
+            <div class="athletes-grid">
+                <!-- Athlete 1 -->
+                <div class="athlete-card">
+                    <div class="athlete-img">
+                        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="David Belle">
+                    </div>
+                    <div class="athlete-info">
+                        <h3 class="athlete-name">David Belle</h3>
+                        <div class="athlete-country">
+                            <i class="fas fa-flag"></i>
+                            <span>France</span>
+                        </div>
+                        <p>Considéré comme le fondateur du parkour et l'un des pionniers du freerunning. Son approche philosophique et sa maîtrise technique ont inspiré des générations de pratiquants.</p>
+                    </div>
+                </div>
+
+                <!-- Athlete 2 -->
+                <div class="athlete-card">
+                    <div class="athlete-img">
+                        <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Ryan Doyle">
+                    </div>
+                    <div class="athlete-info">
+                        <h3 class="athlete-name">Ryan Doyle</h3>
+                        <div class="athlete-country">
+                            <i class="fas fa-flag"></i>
+                            <span>Royaume-Uni</span>
+                        </div>
+                        <p>Champion du monde de freerunning, connu pour son style puissant et créatif. Il a remporté de nombreuses compétitions internationales et apparaît régulièrement dans des films et publicités.</p>
+                    </div>
+                </div>
+
+                <!-- Athlete 3 -->
+                <div class="athlete-card">
+                    <div class="athlete-img">
+                        <img src="https://images.unsplash.com/photo-1583581915742-7c04134b09d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Pasha Petkuns">
+                    </div>
+                    <div class="athlete-info">
+                        <h3 class="athlete-name">Pasha Petkuns</h3>
+                        <div class="athlete-country">
+                            <i class="fas fa-flag"></i>
+                            <span>Lettonie</span>
+                        </div>
+                        <p>Reconnu pour son incroyable agilité et ses mouvements fluides. Multiple champion de freerunning, il est célèbre pour ses vidéos virales et sa participation à "Ninja Warrior".</p>
+                    </div>
+                </div>
+
+                <!-- Athlete 4 -->
+                <div class="athlete-card">
+                    <div class="athlete-img">
+                        <img src="https://images.unsplash.com/photo-1534367507877-0edd93bd013b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Jesse La Flair">
+                    </div>
+                    <div class="athlete-info">
+                        <h3 class="athlete-name">Jesse La Flair</h3>
+                        <div class="athlete-country">
+                            <i class="fas fa-flag"></i>
+                            <span>États-Unis</span>
+                        </div>
+                        <p>Athlète professionnel et producteur de contenu, connu pour ses vidéos spectaculaires et son engagement à promouvoir la sécurité dans la pratique du freerunning.</p>
+                    </div>
+                </div>
+
+                <!-- Athlete 5 -->
+                <div class="athlete-card">
+                    <div class="athlete-img">
+                        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Annty Marais">
+                    </div>
+                    <div class="athlete-info">
+                        <h3 class="athlete-name">Annty Marais</h3>
+                        <div class="athlete-country">
+                            <i class="fas fa-flag"></i>
+                            <span>France</span>
+                        </div>
+                        <p>Une des rares femmes à exceller au plus haut niveau du freerunning. Connue pour sa technique impeccable et sa capacité à exécuter des figures complexes avec une grande élégance.</p>
+                    </div>
+                </div>
+
+                <!-- Athlete 6 -->
+                <div class="athlete-card">
+                    <div class="athlete-img">
+                        <img src="https://images.unsplash.com/photo-1535732759880-bbd5c7265e3f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Jason Paul">
+                    </div>
+                    <div class="athlete-info">
+                        <h3 class="athlete-name">Jason Paul</h3>
+                        <div class="athlete-country">
+                            <i class="fas fa-flag"></i>
+                            <span>Allemagne</span>
+                        </div>
+                        <p>Star internationale de freerunning, reconnue pour son style unique et son engagement à créer du contenu éducatif pour la communauté. Membre fondateur de World Freerunning Parkour Federation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophie">
+        <div class="container">
+            <h2 class="section-title">Philosophie du Freerunning</h2>
+            <div class="philosophy-content">
+                <p>Le freerunning est bien plus qu'une simple discipline sportive. C'est une philosophie qui encourage la liberté d'expression, la créativité et la maîtrise de soi. Les pratiquants cherchent à transformer leur environnement en terrain de jeu, à repousser leurs limites tout en respectant leur corps et leur sécurité.</p>
+                <br>
+                <p>Contrairement à de nombreux sports, le freerunning n'a pas de règles strictes ni de compétition obligatoire. Chacun évolue à son rythme, développant son propre style et sa propre interprétation des mouvements. Cette liberté est au cœur de la discipline et explique son attrait pour des personnes de tous horizons.</p>
+            </div>
+            <div class="philosophy-icons">
+                <div class="philosophy-icon">
+                    <i class="fas fa-brain"></i>
+                    <h3>Mentalité</h3>
+                    <p>Développer la concentration, la confiance en soi et la gestion du risque.</p>
+                </div>
+                <div class="philosophy-icon">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Santé</h3>
+                    <p>Améliorer la condition physique, la souplesse et l'endurance.</p>
+                </div>
+                <div class="philosophy-icon">
+                    <i class="fas fa-users"></i>
+                    <h3>Communauté</h3>
+                    <p>Partager des connaissances, s'entraider et progresser ensemble.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Freerunning</h3>
+                    <p>Découvrez l'art du déplacement et plongez dans l'univers du freerunning à travers ses plus grands athlètes et sa philosophie unique.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#apropos">À propos</a></li>
+                        <li><a href="#athletes">Athlètes</a></li>
+                        <li><a href="#philosophie">Philosophie</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> contact@freerunning.com</li>
+                        <li><i class="fas fa-phone"></i> +33 1 23 45 67 89</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Paris, France</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Freerunning - Tous droits réservés | Site créé à des fins éducatives</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add animation on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.padding = '10px 0';
+            } else {
+                header.style.padding = '0';
+            }
+        });
+    </script>
+</body>
+</html>
