@@ -19,6 +19,7 @@
             --accent-color: #e94560;
             --light-color: #f0f0f0;
             --text-color: #333;
+            --new-talent-color: #0fb9b1;
         }
 
         body {
@@ -43,6 +44,7 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: padding 0.3s;
         }
 
         nav {
@@ -211,6 +213,7 @@
             border-radius: 10px;
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
         }
 
         .athlete-card:hover {
@@ -218,9 +221,29 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
+        .new-talent-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--new-talent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+        }
+
+        .new-talent-badge i {
+            margin-right: 5px;
+        }
+
         .athlete-img {
             height: 250px;
             overflow: hidden;
+            position: relative;
         }
 
         .athlete-img img {
@@ -244,6 +267,10 @@
             color: var(--accent-color);
         }
 
+        .new-talent .athlete-name {
+            color: var(--new-talent-color);
+        }
+
         .athlete-country {
             display: flex;
             align-items: center;
@@ -253,6 +280,22 @@
 
         .athlete-country i {
             margin-right: 8px;
+        }
+
+        .athlete-age {
+            display: inline-block;
+            margin-left: 15px;
+            font-size: 0.9rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
+
+        .athlete-specialty {
+            margin-top: 10px;
+            font-style: italic;
+            color: #ccc;
+            font-size: 0.9rem;
         }
 
         /* Philosophy Section */
@@ -357,6 +400,53 @@
             font-size: 0.9rem;
         }
 
+        /* Highlight Section */
+        .highlight {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .highlight-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .highlight h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--new-talent-color);
+        }
+
+        .highlight p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .highlight-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--new-talent-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
         /* Responsive */
         @media (max-width: 992px) {
             .about-content {
@@ -365,6 +455,10 @@
             
             .hero h1 {
                 font-size: 2.8rem;
+            }
+
+            .highlight-stats {
+                flex-wrap: wrap;
             }
         }
 
@@ -429,6 +523,7 @@
                     <li><a href="#accueil">Accueil</a></li>
                     <li><a href="#apropos">À propos</a></li>
                     <li><a href="#athletes">Athlètes</a></li>
+                    <li><a href="#nouveautalent">Nouveau Talent</a></li>
                     <li><a href="#philosophie">Philosophie</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -441,7 +536,7 @@
         <div class="container">
             <h1>L'art du déplacement</h1>
             <p>Le freerunning est bien plus qu'un sport : c'est une expression artistique, une philosophie de vie qui repousse les limites physiques et mentales. Explorez l'univers de la discipline et découvrez ses plus grands athlètes.</p>
-            <a href="#athletes" class="cta-button">Découvrir les athlètes</a>
+            <a href="#nouveautalent" class="cta-button">Découvrir le nouveau talent</a>
         </div>
     </section>
 
@@ -464,11 +559,59 @@
         </div>
     </section>
 
+    <!-- Highlight Section for New Talent -->
+    <section class="highlight" id="nouveautalent">
+        <div class="container">
+            <div class="highlight-content">
+                <h2>Découvrez le nouveau talent français</h2>
+                <p>RIRI Ryan, 19 ans, est la nouvelle sensation du freerunning français. Avec son style unique mêlant fluidité et explosivité, il repousse les limites de la discipline et inspire toute une nouvelle génération de traceurs.</p>
+                <div class="highlight-stats">
+                    <div class="stat">
+                        <div class="stat-number">19</div>
+                        <div class="stat-label">ans</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">ans d'expérience</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">200K+</div>
+                        <div class="stat-label">abonnés Instagram</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">vidéos virales</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Athletes Section -->
     <section class="athletes" id="athletes">
         <div class="container">
             <h2 class="section-title">Athlètes Phares du Freerunning</h2>
             <div class="athletes-grid">
+                <!-- Nouveau Talent: RIRI Ryan -->
+                <div class="athlete-card new-talent">
+                    <div class="new-talent-badge">
+                        <i class="fas fa-star"></i> Nouveau Talent
+                    </div>
+                    <div class="athlete-img">
+                        <img src="https://images.unsplash.com/photo-1599423300746-b62533397364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="RIRI Ryan">
+                    </div>
+                    <div class="athlete-info">
+                        <h3 class="athlete-name">RIRI Ryan</h3>
+                        <div class="athlete-country">
+                            <i class="fas fa-flag"></i>
+                            <span>France</span>
+                            <span class="athlete-age">19 ans</span>
+                        </div>
+                        <p>La nouvelle sensation du freerunning français. Connu pour ses enchaînements fluides et sa créativité technique, Ryan révolutionne la discipline avec son approche moderne et son style unique.</p>
+                        <div class="athlete-specialty">Spécialité: Fluid movements & creative flow</div>
+                    </div>
+                </div>
+
                 <!-- Athlete 1 -->
                 <div class="athlete-card">
                     <div class="athlete-img">
@@ -481,6 +624,7 @@
                             <span>France</span>
                         </div>
                         <p>Considéré comme le fondateur du parkour et l'un des pionniers du freerunning. Son approche philosophique et sa maîtrise technique ont inspiré des générations de pratiquants.</p>
+                        <div class="athlete-specialty">Spécialité: Fondements & philosophie</div>
                     </div>
                 </div>
 
@@ -496,6 +640,7 @@
                             <span>Royaume-Uni</span>
                         </div>
                         <p>Champion du monde de freerunning, connu pour son style puissant et créatif. Il a remporté de nombreuses compétitions internationales et apparaît régulièrement dans des films et publicités.</p>
+                        <div class="athlete-specialty">Spécialité: Power moves & compétitions</div>
                     </div>
                 </div>
 
@@ -511,6 +656,7 @@
                             <span>Lettonie</span>
                         </div>
                         <p>Reconnu pour son incroyable agilité et ses mouvements fluides. Multiple champion de freerunning, il est célèbre pour ses vidéos virales et sa participation à "Ninja Warrior".</p>
+                        <div class="athlete-specialty">Spécialité: Agilité & fluidité</div>
                     </div>
                 </div>
 
@@ -526,6 +672,7 @@
                             <span>États-Unis</span>
                         </div>
                         <p>Athlète professionnel et producteur de contenu, connu pour ses vidéos spectaculaires et son engagement à promouvoir la sécurité dans la pratique du freerunning.</p>
+                        <div class="athlete-specialty">Spécialité: Production de contenu & sécurité</div>
                     </div>
                 </div>
 
@@ -541,6 +688,7 @@
                             <span>France</span>
                         </div>
                         <p>Une des rares femmes à exceller au plus haut niveau du freerunning. Connue pour sa technique impeccable et sa capacité à exécuter des figures complexes avec une grande élégance.</p>
+                        <div class="athlete-specialty">Spécialité: Technique & élégance</div>
                     </div>
                 </div>
 
@@ -556,6 +704,7 @@
                             <span>Allemagne</span>
                         </div>
                         <p>Star internationale de freerunning, reconnue pour son style unique et son engagement à créer du contenu éducatif pour la communauté. Membre fondateur de World Freerunning Parkour Federation.</p>
+                        <div class="athlete-specialty">Spécialité: Style unique & éducation</div>
                     </div>
                 </div>
             </div>
@@ -611,6 +760,7 @@
                         <li><a href="#accueil">Accueil</a></li>
                         <li><a href="#apropos">À propos</a></li>
                         <li><a href="#athletes">Athlètes</a></li>
+                        <li><a href="#nouveautalent">Nouveau Talent</a></li>
                         <li><a href="#philosophie">Philosophie</a></li>
                     </ul>
                 </div>
@@ -670,6 +820,20 @@
                 header.style.padding = '10px 0';
             } else {
                 header.style.padding = '0';
+            }
+        });
+
+        // Highlight new talent card on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const newTalentCard = document.querySelector('.new-talent');
+            if (newTalentCard) {
+                // Add a slight animation to draw attention to the new talent
+                setTimeout(() => {
+                    newTalentCard.style.boxShadow = '0 0 30px rgba(15, 185, 177, 0.5)';
+                    setTimeout(() => {
+                        newTalentCard.style.boxShadow = '';
+                    }, 2000);
+                }, 1000);
             }
         });
     </script>
